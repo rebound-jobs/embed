@@ -1,4 +1,8 @@
 {
+  "name": "rebound-embed",
+  "version": "0.0.1",
+  "main": "dist/embed.js",
+  "files": ["dist"],
   "scripts": {
     "build": "postcss ./src/css/embed.css -o ./dist/embed.css && uglifyjs ./src/js/embed.js -o ./dist/embed.js -c -m"
   },
