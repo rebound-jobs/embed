@@ -28,10 +28,14 @@
   function displayData(data) {
     var container = document.getElementById('rebound-embed');
     var jobsHtml = '';
+    var title = 'Sports';
     if (data.found === 0) {
-      jobsHtml = '<div>No results found</div>';
+      jobsHtml = '<div class="rebound-p-3">No results found</div>';
     } else {
       jobsHtml = data.hits.map(function(job) {
+        if (filterValue) {
+          title = job.document.jobCompany.title;
+        }
         return `
           <a href="${job.document.url}" class="rebound-block hover:rebound-bg-slate-50 focus:rebound-bg-slate-50 focus:rebound-outline-none rebound-space-y-0.5 rebound-p-3">
             <div class="rebound-font-semibold">${job.document.title}</div>
@@ -50,7 +54,7 @@
 
     var widgetHtml = `
       <div class="rebound-bg-white rebound-font-sans rebound-text-black rebound-border rebound-border-slate-200 rebound-rounded-xl rebound-overflow-hidden">
-        <div class="rebound-text-base rebound-font-semibold rebound-p-3">Sports Jobs</div>
+        <div class="rebound-text-base rebound-font-semibold rebound-p-3">${title} Jobs</div>
         <div class="rebound-text-sm rebound-divide-y rebound-divide-slate-200 rebound-border-y rebound-border-slate-200">
           ${jobsHtml}
         </div>
