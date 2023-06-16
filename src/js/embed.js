@@ -69,5 +69,5 @@
 
 var link = document.createElement('link');
 link.rel = 'stylesheet';
-link.href = './dist/embed.css';
+link.href = 'https://unpkg.com/rebound-embed/dist/embed.css';
 document.head.appendChild(link);
