@@ -33,15 +33,15 @@
     } else {
       jobsHtml = data.hits.map(function(job) {
         return `
-          <a href="${job.document.url}" class="block hover:bg-slate-50 focus:bg-slate-50 focus:outline-none space-y-0.5 p-3">
-            <div class="font-semibold">${job.document.title}</div>
-            <div class="flex items-center">
-              <img src="${job.document.jobCompany.companyLogo}" alt="${job.document.jobCompany.title}" class="flex-none w-4 h-4 rounded-full" />
-              <div class="text-slate-600 truncate ml-1.5">${job.document.jobCompany.title}</div>
+          <a href="${job.document.url}" class="rebound-block hover:rebound-bg-slate-50 focus:rebound-bg-slate-50 focus:rebound-outline-none rebound-space-y-0.5 rebound-p-3">
+            <div class="rebound-font-semibold">${job.document.title}</div>
+            <div class="rebound-flex rebound-items-center">
+              <img src="${job.document.jobCompany.companyLogo}" alt="${job.document.jobCompany.title}" class="rebound-flex-none rebound-w-4 rebound-h-4 rebound-rounded-full" />
+              <div class="rebound-text-slate-600 rebound-truncate rebound-ml-1.5">${job.document.jobCompany.title}</div>
             </div>
-            <div class="flex items-center">
-              <div class="flex-none w-4 h-4">${job.document.jobLocation[0].flag}</div>
-              <div class="text-slate-600 truncate ml-1.5">${job.document.jobLocation[0].title}</div>
+            <div class="rebound-flex rebound-items-center">
+              <div class="rebound-flex-none rebound-w-4 rebound-h-4">${job.document.jobLocation[0].flag}</div>
+              <div class="rebound-text-slate-600 rebound-truncate rebound-ml-1.5">${job.document.jobLocation[0].title}</div>
             </div>
           </a>
         `;
@@ -49,14 +49,14 @@
     }
 
     var widgetHtml = `
-      <div class="bg-white font-sans text-black border border-slate-200 rounded-xl overflow-hidden">
-        <div class="text-base font-semibold p-3">Sports Jobs</div>
-        <div class="text-sm divide-y divide-slate-200 border-y border-slate-200">
+      <div class="rebound-bg-white rebound-font-sans rebound-text-black rebound-border rebound-border-slate-200 rebound-rounded-xl rebound-overflow-hidden">
+        <div class="rebound-text-base rebound-font-semibold rebound-p-3">Sports Jobs</div>
+        <div class="rebound-text-sm rebound-divide-y rebound-divide-slate-200 rebound-border-y rebound-border-slate-200">
           ${jobsHtml}
         </div>
-        <a href="https://reboundjobs.com" class="flex items-center justify-between hover:bg-slate-50 focus:bg-slate-50 focus:outline-none p-3">
-          <div class="text-xs text-slate-500">Powered by ReboundJobs.com</div>
-          <svg class="flex-none w-4 h-4 ml-3" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="m110 170 45-25 25.58 14.21c4.4-5.98 8.15-12.47 11.15-19.36L165 125V75l26.74-14.85c-3-6.89-6.75-13.38-11.15-19.36L155 55l-45-25V.5a100.085 100.085 0 0 0-20 0V30L45 55 19.42 40.79c-4.4 5.98-8.15 12.47-11.15 19.36L35 75v50L8.26 139.85c3 6.89 6.75 13.38 11.15 19.36L45 145l45 25v29.5a100.085 100.085 0 0 0 20 0zM55 99.11c0-24.85 20.15-45 45-45s45 20.15 45 45-20.15 45-45 45-45-20.14-45-45z" fill="none"></path><g fill="#585FFF"><path d="m165 125 26.74 14.85c5.31-12.21 8.26-25.69 8.26-39.85s-2.95-27.64-8.26-39.85L165 75zM35 75 8.26 60.15C2.95 72.36 0 85.83 0 100s2.95 27.64 8.26 39.85L35 125zm55-45V.5C61.06 3.37 35.76 18.58 19.42 40.79L45 55zm65 25 25.58-14.21C164.24 18.58 138.94 3.37 110 .5V30zM45 145l-25.58 14.21C35.76 181.42 61.06 196.63 90 199.5V170zm65 25v29.5c28.94-2.87 54.24-18.08 70.58-40.29L155 145z"></path><circle cx="100" cy="99.11" r="45"></circle></g></svg>
+        <a href="https://reboundjobs.com" class="rebound-flex rebound-items-center rebound-justify-between hover:rebound-bg-slate-50 focus:rebound-bg-slate-50 focus:rebound-outline-none rebound-p-3">
+          <div class="rebound-text-xs rebound-text-slate-500">Powered by ReboundJobs.com</div>
+          <svg class="rebound-flex-none rebound-w-4 rebound-h-4 rebound-ml-3" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="m110 170 45-25 25.58 14.21c4.4-5.98 8.15-12.47 11.15-19.36L165 125V75l26.74-14.85c-3-6.89-6.75-13.38-11.15-19.36L155 55l-45-25V.5a100.085 100.085 0 0 0-20 0V30L45 55 19.42 40.79c-4.4 5.98-8.15 12.47-11.15 19.36L35 75v50L8.26 139.85c3 6.89 6.75 13.38 11.15 19.36L45 145l45 25v29.5a100.085 100.085 0 0 0 20 0zM55 99.11c0-24.85 20.15-45 45-45s45 20.15 45 45-20.15 45-45 45-45-20.14-45-45z" fill="none"></path><g fill="#585FFF"><path d="m165 125 26.74 14.85c5.31-12.21 8.26-25.69 8.26-39.85s-2.95-27.64-8.26-39.85L165 75zM35 75 8.26 60.15C2.95 72.36 0 85.83 0 100s2.95 27.64 8.26 39.85L35 125zm55-45V.5C61.06 3.37 35.76 18.58 19.42 40.79L45 55zm65 25 25.58-14.21C164.24 18.58 138.94 3.37 110 .5V30zM45 145l-25.58 14.21C35.76 181.42 61.06 196.63 90 199.5V170zm65 25v29.5c28.94-2.87 54.24-18.08 70.58-40.29L155 145z"></path><circle cx="100" cy="99.11" r="45"></circle></g></svg>
         </a>
       </div>
     `;
