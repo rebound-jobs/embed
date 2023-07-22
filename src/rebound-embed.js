@@ -31,14 +31,15 @@ export class ReboundEmbed extends LitElement {
       overflow: hidden;
     }
     .widget-title {
+      font-size: 16px;
       line-height: 24px;
       font-weight: bold;
       padding: 12px;
     }
     .job {
       display: block;
-      font-size: 14px;
       color: inherit;
+      font-size: 14px;
       line-height: 20px;
       text-decoration: none;
       padding: 12px;
