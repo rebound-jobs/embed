@@ -1,17 +1,23 @@
 {
   "name": "rebound-embed",
-  "version": "0.0.5",
-  "main": "dist/embed.js",
-  "files": ["dist"],
+  "version": "0.0.6",
+  "type": "module",
+  "main": "dist/rebound-embed.js",
+  "files": [
+    "dist"
+  ],
   "scripts": {
-    "build": "postcss ./src/css/embed.css -o ./dist/embed.css && uglifyjs ./src/js/embed.js -o ./dist/embed.js -c -m",
+    "dev": "rollup -c -w & lite-server",
+    "build": "rollup -c",
     "prepublishOnly": "npm run build"
   },
   "devDependencies": {
-    "autoprefixer": "^10.4.14",
-    "postcss": "^8.4.24",
-    "postcss-cli": "^10.1.0",
-    "tailwindcss": "^3.3.2",
-    "uglify-js": "^3.17.4"
+    "@rollup/plugin-node-resolve": "^15.1.0",
+    "@rollup/plugin-terser": "^0.4.3",
+    "lit": "^2.7.6",
+    "lite-server": "^2.6.1",
+    "rollup": "^3.26.3",
+    "rollup-plugin-lit-css": "^4.0.1",
+    "twemoji": "^14.0.2"
   }
 }
