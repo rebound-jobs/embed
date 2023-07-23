@@ -82,6 +82,13 @@ export class ReboundEmbed extends LitElement {
       text-overflow: ellipsis;
       white-space: nowrap;
     }
+    .no-results {
+      color: var(--secondary-text-color);
+      font-size: 14px;
+      line-height: 20px;
+      padding: 12px;
+      border-top: 1px solid var(--border-color);
+    }
   `;
 
   static properties = {
@@ -151,7 +158,23 @@ export class ReboundEmbed extends LitElement {
   }
 
   renderJob(job) {
-    const flag = twemoji.parse(job.document.jobLocation[0].flag, {
+    const flag = job.document.jobLocation && job.document.jobLocation[0] ? 
+      twemoji.parse(job.document.jobLocation[0].flag, {
+        folder: 'svg',
+        ext: '.svg',
+        attributes: () => {
+          return {
+            width: '18',
+            height: '18'
+          };
+        }
+      }) : null;
+  
+    const remote = job.document.jobRemoteAvailable;
+    const remoteLocation = remote && job.document.jobRemoteLocation && job.document.jobRemoteLocation.length > 0 ? 
+      job.document.jobRemoteLocation[0].title : 'Anywhere';
+  
+    const remoteFlag = twemoji.parse('🌎', {
       folder: 'svg',
       ext: '.svg',
       attributes: () => {
@@ -161,7 +184,7 @@ export class ReboundEmbed extends LitElement {
         };
       }
     });
-
+  
     return html`
       <a target="_blank" rel="noopener" href="${job.document.url}" class="job">
         <div class="job-title">${job.document.title}</div>
@@ -169,13 +192,19 @@ export class ReboundEmbed extends LitElement {
           <img src="${job.document.jobCompany.companyLogo}" alt="${job.document.jobCompany.title}" width="18" height="18">
           <div class="truncate">${job.document.jobCompany.title}</div>
         </div>
+        ${flag ? html`
         <div class="job-location">
           ${unsafeHTML(flag)}
           <div class="truncate">${job.document.jobLocation[0].title}</div>
-        </div>
+        </div>` : ''}
+        ${remote ? html`
+        <div class="job-location">
+          ${unsafeHTML(remoteFlag)}
+          <span class="truncate">Remote (${remoteLocation})</span>
+        </div>` : ''}
       </a>
     `;
-  }
+  }  
 
   render() {
     if (this.data && this.data.hits.length > 0) {
@@ -185,14 +214,23 @@ export class ReboundEmbed extends LitElement {
           <div>${this.data.hits.map(job => this.renderJob(job))}</div>
         </div>
       `;
+    } else if (this.data && this.data.hits.length === 0) {
+      return html`
+        <div class="widget">
+          <div class="widget-title">${this.title || 'Sports Jobs'}</div>
+          <div class="no-results">No jobs found</div>
+        </div>
+      `;
     }
     return html``;
-  }
+  }  
 }
 
-customElements.define('rebound-embed', ReboundEmbed);
+if (!customElements.get('rebound-embed')) {
+  customElements.define('rebound-embed', ReboundEmbed);
+}
 
-function createWidget(elementId, filters) {
+window.createWidget = function(elementId, filters) {
   const element = document.getElementById(elementId);
   if (!element) {
     throw new Error(`No element found with id ${elementId}`);
@@ -221,6 +259,6 @@ window.addEventListener('DOMContentLoaded', (event) => {
     return;
   }
 
-  const filters = JSON.parse(element.getAttribute('data-filters') || '{}');
+  const filters = JSON.parse(element.getAttribute('data-filter') || '{}');
   createWidget('rebound-embed', filters);
 });
