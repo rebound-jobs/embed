@@ -133,7 +133,7 @@ export class ReboundEmbed extends LitElement {
     let filters = [];
     if (this.filters.company) filters.push(`jobCompany.id:=${this.filters.company}`);
     if (this.filters.tag) filters.push(`jobTags.id:=["${this.filters.tag}"]`);
-    const filterBy = filters.join(",");
+    const filterBy = filters.join("&&");
 
     const apiUrl = `https://search.reboundjobs.com/collections/jobs/documents/search?q=${encodeURIComponent(query)}&query_by=${encodeURIComponent(queryBy)}&filter_by=${encodeURIComponent(filterBy)}`;
   
